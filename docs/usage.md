@@ -1,6 +1,6 @@
 # Usage
 
-Design OS uses slash commands to guide you through the design process. Each command is a conversation—the AI asks questions, you provide direction, and together you shape your product.
+Design OS uses Hermes Agent skills to guide you through the design process. Each skill is a conversation—the AI asks questions, you provide direction, and together you shape your product.
 
 ## The Design Workflow
 
@@ -40,16 +40,16 @@ See [Export](export.md) for details on what's included and how to use it.
 
 | Command | Purpose |
 |---------|---------|
-| `/product-vision` | Define product overview, roadmap sections, and data shape |
-| `/design-tokens` | Choose colors and typography |
-| `/design-shell` | Design navigation and layout |
-| `/shape-section` | Define a section's scope, requirements, and generate sample data + types |
-| `/design-screen` | Create screen design components |
-| `/screenshot-design` | Capture screenshots |
-| `/export-product` | Generate the complete handoff package |
-| `/product-roadmap` | Update product sections (after initial creation) |
-| `/data-shape` | Update data entities (after initial creation) |
-| `/sample-data` | Update sample data and types (after initial creation) |
+| `/skill design-os-product-vision` | Define product overview, roadmap sections, and data shape |
+| `/skill design-os-design-tokens` | Choose colors and typography |
+| `/skill design-os-design-shell` | Design navigation and layout |
+| `/skill design-os-shape-section` | Define a section's scope, requirements, and generate sample data + types |
+| `/skill design-os-design-screen` | Create screen design components |
+| `/skill design-os-screenshot-design` | Capture screenshots |
+| `/skill design-os-export-product` | Generate the complete handoff package |
+| `/skill design-os-product-roadmap` | Update product sections (after initial creation) |
+| `/skill design-os-data-shape` | Update data entities (after initial creation) |
+| `/skill design-os-sample-data` | Update sample data and types (after initial creation) |
 
 ## Tips
 

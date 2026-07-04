@@ -1,3 +1,10 @@
+---
+name: design-os-design-shell
+description: "Design OS Phase 1: Design the application shell — the persistent navigation and layout that wraps all sections."
+version: 1.0.0
+parent: design-os
+---
+
 # Design Shell
 
 You are helping the user design the application shell — the persistent navigation and layout that wraps all sections. This is a screen design, not implementation code.
@@ -6,21 +13,20 @@ You are helping the user design the application shell — the persistent navigat
 
 First, verify prerequisites exist:
 
-1. Read `/product/product-overview.md` — Product name and description
-2. Read `/product/product-roadmap.md` — Sections for navigation
-3. Check if `/product/design-system/colors.json` and `/product/design-system/typography.json` exist
+1. Read `product/product-overview.md` — Product name and description
+2. Read `product/product-roadmap.md` — Sections for navigation
+3. Check if `product/design-system/colors.json` and `product/design-system/typography.json` exist
 
 If overview or roadmap are missing:
 
-"Before designing the shell, you need to define your product and sections. Please run:
-1. `/product-vision` — Define your product
-2. `/product-roadmap` — Define your sections"
+"Before designing the shell, you need to define your product and sections. Please load:
+1. `/skill design-os-product-vision` — Define your product"
 
 Stop here if overview or roadmap are missing.
 
 If design tokens are missing, show a warning but continue:
 
-"Note: Design tokens haven't been defined yet. I'll proceed with default styling, but you may want to run `/design-tokens` first for consistent colors and typography."
+"Note: Design tokens haven't been defined yet. I'll proceed with default styling, but you may want to load `/skill design-os-design-tokens` first for consistent colors and typography."
 
 ## Step 2: Analyze Product Structure
 
@@ -49,7 +55,7 @@ Wait for their response.
 
 ## Step 3: Gather Design Details
 
-Use AskUserQuestion to clarify:
+Use the `clarify` tool to clarify:
 
 - "Where should the user menu (avatar, logout) appear?"
 - "Do you want the sidebar collapsible on mobile, or should it become a hamburger menu?"
@@ -84,7 +90,7 @@ Iterate until approved.
 
 ## Step 5: Create the Shell Specification
 
-Create `/product/shell/spec.md`:
+Create `product/shell/spec.md`:
 
 ```markdown
 # Application Shell Specification
@@ -190,13 +196,13 @@ export default function ShellPreview() {
 If design tokens exist, apply them to the shell components:
 
 **Colors:**
-- Read `/product/design-system/colors.json`
+- Read `product/design-system/colors.json`
 - Use primary color for active nav items, key accents
 - Use secondary color for hover states, subtle highlights
 - Use neutral color for backgrounds, borders, text
 
 **Typography:**
-- Read `/product/design-system/typography.json`
+- Read `product/design-system/typography.json`
 - Apply heading font to nav items and titles
 - Apply body font to other text
 - Include Google Fonts import in the preview
@@ -208,7 +214,7 @@ Let the user know:
 "I've designed the application shell for **[Product Name]**:
 
 **Created files:**
-- `/product/shell/spec.md` — Shell specification
+- `product/shell/spec.md` — Shell specification
 - `src/shell/components/AppShell.tsx` — Main shell wrapper
 - `src/shell/components/MainNav.tsx` — Navigation component
 - `src/shell/components/UserMenu.tsx` — User menu component
@@ -224,9 +230,9 @@ Let the user know:
 
 **Important:** Restart your dev server to see the changes.
 
-When you design section screens with `/design-screen`, they will render inside this shell, showing the full app experience.
+When you design section screens with `/skill design-os-design-screen`, they will render inside this shell, showing the full app experience.
 
-Next: Run `/shape-section` to start designing your first section."
+Next: Load `/skill design-os-shape-section` to start designing your first section."
 
 ## Important Notes
 

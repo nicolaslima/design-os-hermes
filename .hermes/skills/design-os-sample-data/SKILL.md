@@ -1,3 +1,10 @@
+---
+name: design-os-sample-data
+description: "Design OS: Create or update realistic sample data and TypeScript types for a section of your product."
+version: 1.0.0
+parent: design-os
+---
+
 # Sample Data
 
 You are helping the user create or update realistic sample data for a section of their product. This data will be used to populate screen designs. You will also generate TypeScript types based on the data structure.
@@ -6,13 +13,13 @@ You are helping the user create or update realistic sample data for a section of
 
 First, identify the target section and verify that `spec.md` exists for it.
 
-Read `/product/product-roadmap.md` to get the list of available sections.
+Read `product/product-roadmap.md` to get the list of available sections.
 
-If there's only one section, auto-select it. If there are multiple sections, use the AskUserQuestion tool to ask which section the user wants to generate data for.
+If there's only one section, auto-select it. If there are multiple sections, use the `clarify` tool to ask which section the user wants to generate data for.
 
 Then check if `product/sections/[section-id]/spec.md` exists. If it doesn't:
 
-"I don't see a specification for **[Section Title]** yet. Please run `/shape-section` first to define the section's requirements, then come back to generate sample data."
+"I don't see a specification for **[Section Title]** yet. Please load `/skill design-os-shape-section` first to define the section's requirements, then come back to generate sample data."
 
 Stop here if the spec doesn't exist.
 
@@ -30,7 +37,7 @@ Wait for the user's response describing what they want changed. Once you receive
 
 After updating, inform the user:
 
-"I've updated the sample data and types for **[Section Title]** based on your feedback. Review the changes and let me know if you'd like further adjustments, or run `/design-screen` when you're ready."
+"I've updated the sample data and types for **[Section Title]** based on your feedback. Review the changes and let me know if you'd like further adjustments, or load `/skill design-os-design-screen` when you're ready."
 
 Stop here — the remaining steps below are for generating new data from scratch.
 
@@ -38,7 +45,7 @@ Stop here — the remaining steps below are for generating new data from scratch
 
 ## Step 3: Check for Global Data Shape
 
-Check if `/product/data-shape/data-shape.md` exists.
+Check if `product/data-shape/data-shape.md` exists.
 
 **If it exists:**
 - Read the file to understand the global entity definitions
@@ -48,7 +55,7 @@ Check if `/product/data-shape/data-shape.md` exists.
 **If it doesn't exist:**
 Show a warning but continue:
 
-"Note: A global data shape hasn't been defined yet. I'll create entity structures based on the section spec, but for consistency across sections, consider running `/data-shape` first."
+"Note: A global data shape hasn't been defined yet. I'll create entity structures based on the section spec, but for consistency across sections, consider loading `/skill design-os-data-shape` first."
 
 ## Step 4: Analyze and Generate
 
@@ -67,18 +74,18 @@ Read and analyze `product/sections/[section-id]/spec.md` to understand:
 
 Create the data file with:
 
-- **A `_meta` section** - Human-readable descriptions of each entity and how they relate in the UI (displayed in the Design OS interface)
-- **Realistic sample data** - Use believable names, dates, descriptions, etc.
-- **Varied content** - Mix short and long text, different statuses, etc.
-- **Edge cases** - Include at least one empty array, one long description, etc.
-- **TypeScript-friendly structure** - Use consistent field names and types
+- **A `_meta` section** — Human-readable descriptions of each entity and how they relate in the UI (displayed in the Design OS interface)
+- **Realistic sample data** — Use believable names, dates, descriptions, etc.
+- **Varied content** — Mix short and long text, different statuses, etc.
+- **Edge cases** — Include at least one empty array, one long description, etc.
+- **TypeScript-friendly structure** — Use consistent field names and types
 
 #### Required `_meta` Structure
 
 Every data.json MUST include a `_meta` object at the top level with:
 
-1. **`models`** - An object where each key is an entity name and value is a plain-language description of what it represents in the UI
-2. **`relationships`** - An array of strings describing how entities relate from the user's perspective
+1. **`models`** — An object where each key is an entity name and value is a plain-language description of what it represents in the UI
+2. **`relationships`** — An array of strings describing how entities relate from the user's perspective
 
 Example structure:
 
@@ -133,9 +140,7 @@ Generate TypeScript types based on the data structure.
    - Objects → Create a named interface
 
 2. **Use union types for status/enum fields:**
-
    - If a field like `status` has known values, use a union: `'draft' | 'sent' | 'paid' | 'overdue'`
-
    - Base this on the spec and the variety in sample data
 
 3. **Create a Props interface for the main component:**
@@ -193,13 +198,9 @@ export interface InvoiceListProps {
 #### Naming Conventions
 
 - Use PascalCase for interface names: `Invoice`, `LineItem`, `InvoiceListProps`
-
 - Use camelCase for property names: `clientName`, `dueDate`, `lineItems`
-
 - Props interface should be named `[SectionName]Props` (e.g., `InvoiceListProps`)
-
 - Add JSDoc comments for callback props to explain when they're called
-
 - **Match entity names from the global data shape if one exists**
 
 ## Step 5: Inform and Next Steps
@@ -208,20 +209,20 @@ After creating both files, let the user know:
 
 "I've created two files for **[Section Title]**:
 
-1. `product/sections/[section-id]/data.json` - Sample data with [X] records
+1. `product/sections/[section-id]/data.json` — Sample data with [X] records
 
-2. `product/sections/[section-id]/types.ts` - TypeScript interfaces for type safety
+2. `product/sections/[section-id]/types.ts` — TypeScript interfaces for type safety
 
 The types include:
 
-- `[Entity]` - The main data type
-- `[SectionName]Props` - Props interface for the component (includes callbacks for [list actions])
+- `[Entity]` — The main data type
+- `[SectionName]Props` — Props interface for the component (includes callbacks for [list actions])
 
-Review the files and let me know if you'd like any adjustments. When you're ready, run `/design-screen` to create the screen design for this section."
+Review the files and let me know if you'd like any adjustments. When you're ready, load `/skill design-os-design-screen` to create the screen design for this section."
 
 ## Important Notes
 
-- Generate realistic, believable sample data - not "Lorem ipsum" or "Test 123"
+- Generate realistic, believable sample data — not "Lorem ipsum" or "Test 123"
 - Include 5-10 sample records for main entities (enough to show a realistic list)
 - Include edge cases: empty arrays, long text, different statuses
 - Keep field names clear and TypeScript-friendly (camelCase)

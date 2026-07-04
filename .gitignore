@@ -21,3 +21,10 @@ dist/
 # Logs
 *.log
 npm-debug.log*
+
+# Hermes session data (keep skills, ignore runtime)
+.hermes/sessions/
+.hermes/state.db
+.hermes/logs/
+.hermes/.env
+.hermes/auth.json

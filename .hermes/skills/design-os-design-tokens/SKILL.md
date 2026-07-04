@@ -1,3 +1,10 @@
+---
+name: design-os-design-tokens
+description: "Design OS Phase 1: Choose colors and typography for your product. These design tokens will be used consistently across all screen designs and the application shell."
+version: 1.0.0
+parent: design-os
+---
+
 # Design Tokens
 
 You are helping the user choose colors and typography for their product. These design tokens will be used consistently across all screen designs and the application shell.
@@ -6,11 +13,11 @@ You are helping the user choose colors and typography for their product. These d
 
 First, verify that the product overview exists:
 
-Read `/product/product-overview.md` to understand what the product is.
+Read `product/product-overview.md` to understand what the product is.
 
 If it doesn't exist:
 
-"Before defining your design system, you'll need to establish your product vision. Please run `/product-vision` first."
+"Before defining your design system, you'll need to establish your product vision. Please load `/skill design-os-product-vision` first."
 
 Stop here if the prerequisite is missing.
 
@@ -50,7 +57,7 @@ Based on [Product Name], I'd suggest:
 
 What feels right for your product?"
 
-Use AskUserQuestion to gather their preferences if they're unsure:
+Use the `clarify` tool to gather their preferences if they're unsure:
 
 - "What vibe are you going for? Professional, playful, modern, minimal?"
 - "Any colors you definitely want to avoid?"
@@ -100,7 +107,7 @@ Does this look good? Ready to save it?"
 
 Once approved, create two files:
 
-**File 1:** `/product/design-system/colors.json`
+**File 1:** `product/design-system/colors.json`
 ```json
 {
   "primary": "[color]",
@@ -109,7 +116,7 @@ Once approved, create two files:
 }
 ```
 
-**File 2:** `/product/design-system/typography.json`
+**File 2:** `product/design-system/typography.json`
 ```json
 {
   "heading": "[Font Name]",
@@ -123,8 +130,8 @@ Once approved, create two files:
 Let the user know:
 
 "I've saved your design tokens:
-- `/product/design-system/colors.json`
-- `/product/design-system/typography.json`
+- `product/design-system/colors.json`
+- `product/design-system/typography.json`
 
 **Your palette:**
 - Primary: `[color]` — for buttons, links, key actions
@@ -138,7 +145,7 @@ Let the user know:
 
 These will be used when creating screen designs for your sections.
 
-Next step: Run `/design-shell` to design your application's navigation and layout."
+Next step: Load `/skill design-os-design-shell` to design your application's navigation and layout."
 
 ## Reference: Tailwind Color Palette
 

@@ -1,3 +1,10 @@
+---
+name: design-os-product-vision
+description: "Design OS Phase 1: Define your product vision — product overview, roadmap sections, and data shape in one conversational flow. The entry point of the Design OS process."
+version: 1.0.0
+parent: design-os
+---
+
 # Product Vision
 
 You are helping the user define their product vision for Design OS. This is a conversational process that results in three files: the product overview, product roadmap, and data shape.
@@ -6,19 +13,19 @@ You are helping the user define their product vision for Design OS. This is a co
 
 First, ask the user to share their raw notes, ideas, or thoughts about the product they want to build. Be warm and open-ended:
 
-"I'd love to help you define your product vision. Tell me about the product you're building - share any notes, ideas, or rough thoughts you have. What problem are you trying to solve? Who is it for? Don't worry about structure yet, just share what's on your mind."
+"I'd love to help you define your product vision. Tell me about the product you're building — share any notes, ideas, or rough thoughts you have. What problem are you trying to solve? Who is it for? Don't worry about structure yet, just share what's on your mind."
 
 Wait for their response before proceeding.
 
 ## Step 2: Ask Clarifying Questions
 
-After receiving their input, use the AskUserQuestion tool to ask targeted questions covering all three areas. Ask questions one or two at a time, conversationally, with follow-ups as needed.
+After receiving their input, use the `clarify` tool to ask targeted questions covering all three areas. Ask questions one or two at a time, conversationally, with follow-ups as needed.
 
 ### Product Vision Questions
 
 Shape the core product definition:
 
-- **The product name** - A clear, concise name for the product
+- **The product name** — A clear, concise name for the product
 - **The core product description** (1-3 sentences that capture the essence)
 - **The key problems** the product solves (1-5 specific pain points)
 - **How the product solves each problem** (concrete solutions)
@@ -57,7 +64,7 @@ Once you have enough information from the clarifying questions, **immediately pr
 
 ### 3a: Create Product Overview
 
-Create the file at `/product/product-overview.md` with this exact format:
+Create the file at `product/product-overview.md` with this exact format:
 
 ```markdown
 # [Product Name]
@@ -82,11 +89,11 @@ Create the file at `/product/product-overview.md` with this exact format:
 [Add more as needed]
 ```
 
-**Important:** The `# [Product Name]` heading at the top is required - this is what displays as the card title in the app.
+**Important:** The `# [Product Name]` heading at the top is required — this is what displays as the card title in the app.
 
 ### 3b: Create Product Roadmap
 
-Create `/product/product-roadmap.md` with this exact format:
+Create `product/product-roadmap.md` with this exact format:
 
 ```markdown
 # Product Roadmap
@@ -111,7 +118,7 @@ Sections should be:
 
 ### 3c: Create Data Shape
 
-Create `/product/data-shape/data-shape.md` with this format:
+Create `product/data-shape/data-shape.md` with this format:
 
 ```markdown
 # Data Shape
@@ -153,7 +160,7 @@ After all three files are created, present a summary:
 
 **Core Entities:** [Entity1], [Entity2], [Entity3]
 
-Review these files and let me know if you'd like to adjust anything. When you're ready, run `/design-tokens` to choose your color palette and typography, or `/shape-section` to start designing a section."
+Review these files and let me know if you'd like to adjust anything. When you're ready, load `/skill design-os-design-tokens` to choose your color palette and typography, or `/skill design-os-shape-section` to start designing a section."
 
 ## Important Notes
 
@@ -162,6 +169,6 @@ Review these files and let me know if you'd like to adjust anything. When you're
 - Help the user think through their product, don't just transcribe
 - Keep the final output concise and clear
 - The format must match exactly for the app to parse it correctly
-- **Always ensure the product has a name** - if user didn't provide one, ask for it
+- **Always ensure the product has a name** — if user didn't provide one, ask for it
 - Do NOT present a draft for approval — go straight to writing all three files after gathering enough info
 - If the user requests changes after reviewing, update the relevant files immediately

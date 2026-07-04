@@ -31,15 +31,27 @@ npm run dev
 
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-## Open Claude Code
+## Start Hermes Agent
 
-In the same project directory, start Claude Code:
+In the same project directory, start Hermes:
 
 ```bash
-claude
+hermes
 ```
 
-You're ready to start designing. Run `/product-vision` to begin defining your product.
+You're ready to start designing. Load the Design OS umbrella skill:
+
+```
+/skill design-os
+```
+
+Then follow the guided process, or start directly with:
+
+```
+/skill design-os-product-vision
+```
+
+to begin defining your product.
 
 ---
 

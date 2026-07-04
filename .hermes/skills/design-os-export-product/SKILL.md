@@ -1,3 +1,10 @@
+---
+name: design-os-export-product
+description: "Design OS Phase 3: Generate the complete handoff package — components, types, test specs, and ready-to-use prompts for implementation agents."
+version: 1.0.0
+parent: design-os
+---
+
 # Export Product
 
 You are helping the user export their complete product design as a handoff package for implementation. This generates all files needed to integrate the UI designs into a real codebase.
@@ -7,21 +14,21 @@ You are helping the user export their complete product design as a handoff packa
 Verify the minimum requirements exist:
 
 **Required:**
-- `/product/product-overview.md` — Product overview
-- `/product/product-roadmap.md` — Sections defined
+- `product/product-overview.md` — Product overview
+- `product/product-roadmap.md` — Sections defined
 - At least one section with screen designs in `src/sections/[section-id]/`
 
 **Recommended (show warning if missing):**
-- `/product/data-shape/data-shape.md` — Product entities
-- `/product/design-system/colors.json` — Color tokens
-- `/product/design-system/typography.json` — Typography tokens
+- `product/data-shape/data-shape.md` — Product entities
+- `product/design-system/colors.json` — Color tokens
+- `product/design-system/typography.json` — Typography tokens
 - `src/shell/components/AppShell.tsx` — Application shell
 
 If required files are missing:
 
 "To export your product, you need at minimum:
-- A product overview (`/product-vision`)
-- A roadmap with sections (`/product-roadmap`)
+- A product overview (`/skill design-os-product-vision`)
+- A roadmap with sections (`/skill design-os-product-roadmap`)
 - At least one section with screen designs
 
 Please complete these first."
@@ -31,9 +38,9 @@ Stop here if required files are missing.
 If recommended files are missing, show warnings but continue:
 
 "Note: Some recommended items are missing:
-- [ ] Product entities — Run `/data-shape` for consistent entity naming
-- [ ] Design tokens — Run `/design-tokens` for consistent styling
-- [ ] Application shell — Run `/design-shell` for navigation structure
+- [ ] Product entities — Load `/skill design-os-data-shape` for consistent entity naming
+- [ ] Design tokens — Load `/skill design-os-design-tokens` for consistent styling
+- [ ] Application shell — Load `/skill design-os-design-shell` for navigation structure
 
 You can proceed without these, but they help ensure a complete handoff."
 
@@ -41,12 +48,12 @@ You can proceed without these, but they help ensure a complete handoff."
 
 Read all relevant files:
 
-1. `/product/product-overview.md` — Product name, description, features
-2. `/product/product-roadmap.md` — List of sections in order
-3. `/product/data-shape/data-shape.md` (if exists)
-4. `/product/design-system/colors.json` (if exists)
-5. `/product/design-system/typography.json` (if exists)
-6. `/product/shell/spec.md` (if exists)
+1. `product/product-overview.md` — Product name, description, features
+2. `product/product-roadmap.md` — List of sections in order
+3. `product/data-shape/data-shape.md` (if exists)
+4. `product/design-system/colors.json` (if exists)
+5. `product/design-system/typography.json` (if exists)
+6. `product/shell/spec.md` (if exists)
 7. For each section: `spec.md`, `data.json`, `types.ts`
 8. List screen design components in `src/sections/` and `src/shell/`
 
@@ -498,8 +505,6 @@ See `screenshot.png` for the target UI design.
 | `onEdit` | User clicks to edit |
 | `onDelete` | User clicks to delete |
 | `onCreate` | User clicks to create new |
-
-[Adjust based on actual Props interface]
 ```
 
 ## Step 9: Generate Section Test Instructions
@@ -648,195 +653,38 @@ const mockItem = {
 };
 
 const mockItems = [mockItem, /* ... more items */];
-
-// Empty states
-const mockEmptyList = [];
-
-const mockItemWithNoChildren = {
-  id: "test-1",
-  name: "Test Item",
-  children: [],
-};
-```
 ```
 
-### Guidelines for Writing tests.md
-
-When generating tests.md for each section:
-
-1. **Read the spec.md thoroughly** — Extract all user flows and requirements
-2. **Study the screen design components** — Note exact button labels, field names, UI text
-3. **Review types.ts** — Understand the data shapes for assertions
-4. **Include specific UI text** — Tests should verify exact labels, messages, placeholders
-5. **Cover success and failure paths** — Every action should have both tested
-6. **Always test empty states** — Primary lists with no items, parent records with no children
-7. **Be specific about assertions** — "Shows error" is too vague; "Shows red border and message 'Email is required' below the field" is specific
-8. **Include edge cases** — Boundary conditions, transitions between empty and populated states
-9. **Stay framework-agnostic** — Describe WHAT to test (UI behavior), not HOW to write the test code
-
-## Step 10: Generate Design System Files
-
-### tokens.css
-
-```css
-/* Design Tokens for [Product Name] */
-
-:root {
-  /* Colors */
-  --color-primary: [Tailwind color];
-  --color-secondary: [Tailwind color];
-  --color-neutral: [Tailwind color];
-
-  /* Typography */
-  --font-heading: '[Heading Font]', sans-serif;
-  --font-body: '[Body Font]', sans-serif;
-  --font-mono: '[Mono Font]', monospace;
-}
-```
-
-### tailwind-colors.md
-
-```markdown
-# Tailwind Color Configuration
-
-## Color Choices
-
-- **Primary:** `[color]` — Used for buttons, links, key accents
-- **Secondary:** `[color]` — Used for tags, highlights, secondary elements
-- **Neutral:** `[color]` — Used for backgrounds, text, borders
-
-## Usage Examples
-
-Primary button: `bg-[primary]-600 hover:bg-[primary]-700 text-white`
-Secondary badge: `bg-[secondary]-100 text-[secondary]-800`
-Neutral text: `text-[neutral]-600 dark:text-[neutral]-400`
-```
-
-### fonts.md
-
-```markdown
-# Typography Configuration
-
-## Google Fonts Import
-
-Add to your HTML `<head>` or CSS:
-
-```html
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=[Heading+Font]&family=[Body+Font]&family=[Mono+Font]&display=swap" rel="stylesheet">
-```
-
-## Font Usage
-
-- **Headings:** [Heading Font]
-- **Body text:** [Body Font]
-- **Code/technical:** [Mono Font]
-```
-
-## Step 11: Generate Data Shapes Files
-
-### data-shapes/README.md
-
-Create `product-plan/data-shapes/README.md`:
-
-```markdown
-# UI Data Shapes
-
-These types define the shape of data that the UI components expect to receive as props. They represent the **frontend contract** — what the components need to render correctly.
-
-How you model, store, and fetch this data on the backend is an implementation decision. You may combine, split, or extend these types to fit your architecture.
-
-## Entities
-
-[List all entities across sections with brief descriptions]
-
-- **[Entity1]** — [Description] (used in: [section-name])
-- **[Entity2]** — [Description] (used in: [section-name])
-- **[Entity3]** — [Description] (used in: [section-name-1], [section-name-2])
-
-## Per-Section Types
-
-Each section includes its own `types.ts` with the full interface definitions:
-
-- `sections/[section-1]/types.ts`
-- `sections/[section-2]/types.ts`
-- ...
-
-## Combined Reference
-
-See `overview.ts` for all entity types aggregated in one file.
-```
-
-### data-shapes/overview.ts
-
-Create `product-plan/data-shapes/overview.ts` by aggregating all section types:
-
-```typescript
-// =============================================================================
-// UI Data Shapes — Combined Reference
-//
-// These types define the data that UI components expect to receive as props.
-// They are a frontend contract, not a database schema. How you model, store,
-// and fetch this data is an implementation decision.
-// =============================================================================
-
-// -----------------------------------------------------------------------------
-// From: sections/[section-1]
-// -----------------------------------------------------------------------------
-
-[Copy entity types from section-1/types.ts — data interfaces only, not Props]
-
-// -----------------------------------------------------------------------------
-// From: sections/[section-2]
-// -----------------------------------------------------------------------------
-
-[Copy entity types from section-2/types.ts — data interfaces only, not Props]
-
-// [Repeat for all sections]
-```
-
-Only include the data shape interfaces (e.g., `Invoice`, `LineItem`), not the component Props interfaces. The Props interfaces stay in each section's own `types.ts`.
-
-## Step 12: Generate Prompt Files
-
-Create the `product-plan/prompts/` directory with two ready-to-use prompt files.
+## Step 10: Generate Prompts
 
 ### one-shot-prompt.md
 
 Create `product-plan/prompts/one-shot-prompt.md`:
 
 ```markdown
-# One-Shot Implementation Prompt
+# [Product Name] — Full Implementation Prompt
 
-I need you to implement a complete web application based on detailed UI designs and product specifications I'm providing.
+## Context
 
-## Instructions
+You are implementing a complete product called **[Product Name]**. The UI designs, product requirements, and implementation instructions have been prepared for you.
 
-Please carefully read and analyze the following files:
+## What to Do
 
-1. **@product-plan/product-overview.md** — Product summary with sections and entity overview
-2. **@product-plan/instructions/one-shot-instructions.md** — Complete implementation instructions for all milestones
+1. Read `product-plan/product-overview.md` for full product context
+2. Read `product-plan/instructions/one-shot-instructions.md` for complete implementation instructions
+3. Review the design files in `product-plan/` (design-system, shell, sections)
+4. Ask me clarifying questions about my tech stack, architecture, and preferences
+5. Implement the full product, milestone by milestone
+6. Write tests based on the `tests.md` files in each section
+7. Wire up callback props to routing and business logic
+8. Replace sample data with real data from the backend
 
-After reading these, also review:
-- **@product-plan/design-system/** — Color and typography tokens
-- **@product-plan/data-shapes/** — UI data contracts (the shapes of data the components expect)
-- **@product-plan/shell/** — Application shell components
-- **@product-plan/sections/** — All section components, types, sample data, and test specs
+## Important
 
-## Before You Begin
-
-Review all the provided files, then ask me clarifying questions about:
-
-1. **My tech stack** — What framework, language, and tools I'm using, and any existing codebase conventions
-2. **Authentication & users** — How users should sign up, log in, and what permissions exist
-3. **Product requirements** — Anything in the specs or user flows that needs clarification
-4. **Anything else** — Whatever you need to know before implementing
-
-Lastly, ask me if I have any additional notes for this implementation.
-
-Once I answer your questions, create a comprehensive implementation plan before coding.
-
+- The UI components are complete and production-ready — wire them up, don't rebuild them
+- Use the design tokens provided for consistent styling
+- Follow the user flow specs exactly
+- Write tests first (TDD approach) using the provided test specs
 ```
 
 ### section-prompt.md
@@ -844,185 +692,128 @@ Once I answer your questions, create a comprehensive implementation plan before 
 Create `product-plan/prompts/section-prompt.md`:
 
 ```markdown
-# Section Implementation Prompt
+# [Product Name] — Section Implementation Prompt
 
-## Define Section Variables
+## Variables
 
-- **SECTION_NAME** = [Human-readable name, e.g., "Invoices" or "Project Dashboard"]
-- **SECTION_ID** = [Folder name in sections/, e.g., "invoices" or "project-dashboard"]
-- **NN** = [Milestone number, e.g., "02" or "03" — sections start at 02 since 01 is Shell]
+Replace these before using:
+- SECTION_NAME: [The name of the section, e.g., "Invoices"]
+- SECTION_ID: [The section ID, e.g., "invoices"]
+- NN: [The milestone number, e.g., "02"]
 
----
+## Context
 
-I need you to implement the **SECTION_NAME** section of my application.
+You are implementing **[SECTION_NAME]**, milestone [NN] of **[Product Name]**. The UI designs and implementation instructions have been prepared for you.
 
-## Instructions
+## What to Do
 
-Please carefully read and analyze the following files:
+1. Read `product-plan/product-overview.md` for full product context
+2. Read `product-plan/instructions/incremental/[NN]-[SECTION_ID].md` for this milestone's instructions
+3. Review the section files in `product-plan/sections/[SECTION_ID]/`
+4. Ask me clarifying questions about the tech stack, data layer, and integration approach
+5. Implement the feature following the instructions
+6. Write tests based on `product-plan/sections/[SECTION_ID]/tests.md`
+7. Wire up callback props to routing and business logic
+8. Replace sample data with real data from the backend
 
-1. **@product-plan/product-overview.md** — Product summary for overall context
-2. **@product-plan/instructions/incremental/NN-SECTION_ID.md** — Specific instructions for this section
+## Important
 
-Also review the section assets:
-- **@product-plan/sections/SECTION_ID/README.md** — Feature overview and design intent
-- **@product-plan/sections/SECTION_ID/tests.md** — UI behavior test specs
-- **@product-plan/sections/SECTION_ID/components/** — React components to integrate
-- **@product-plan/sections/SECTION_ID/types.ts** — TypeScript interfaces
-- **@product-plan/sections/SECTION_ID/sample-data.json** — Test data
-
-## Before You Begin
-
-Review all the provided files, then ask me clarifying questions about:
-
-1. **Integration** — How this section connects to existing features and any APIs already built
-2. **Product requirements** — Anything in the specs or user flows that needs clarification
-3. **Anything else** — Whatever you need to know before implementing
-
-Lastly, ask me if I have any additional notes for this implementation.
-
-Once I answer your questions, proceed with implementation.
-
+- The UI components are complete and production-ready — wire them up, don't rebuild them
+- Follow the user flow specs exactly
+- Write tests first (TDD approach) using the provided test specs
+- Handle empty states properly
 ```
 
-## Step 13: Generate README.md
+## Step 11: Generate README.md
 
 Create `product-plan/README.md`:
 
 ```markdown
-# [Product Name] — Design Handoff
+# [Product Name] — Design Handoff Package
 
-This folder contains everything needed to implement [Product Name].
+This package contains everything needed to implement the UI for **[Product Name]**.
+
+## Quick Start
+
+1. Choose your implementation approach:
+   - **One-shot:** Use `prompts/one-shot-prompt.md` with `instructions/one-shot-instructions.md`
+   - **Section-by-section:** Use `prompts/section-prompt.md` with `instructions/incremental/` files
+
+2. Copy this `product-plan/` folder into your target codebase
+
+3. Start your AI coding agent (Claude Code, Cursor, Codex, Hermes, etc.) and paste the prompt
+
+4. Answer clarifying questions about your tech stack and architecture
+
+5. Let the agent implement — the UI components are complete, just wire them up
 
 ## What's Included
 
-**Ready-to-Use Prompts:**
-- `prompts/one-shot-prompt.md` — Prompt template for full implementation
-- `prompts/section-prompt.md` — Prompt template for section-by-section implementation
+- **product-overview.md** — Full product context (always provide this)
+- **prompts/** — Ready-to-use prompts for coding agents
+- **instructions/** — Implementation instructions (one-shot or incremental)
+- **design-system/** — Design tokens (colors, typography)
+- **data-shapes/** — UI data contracts (TypeScript interfaces)
+- **shell/** — Application shell components
+- **sections/** — Section components with test specs
 
-**Instructions:**
-- `product-overview.md` — Product summary (provide with every implementation)
-- `instructions/one-shot-instructions.md` — All milestones combined for full implementation
-- `instructions/incremental/` — Milestone-by-milestone instructions (shell, then sections)
+## Components
 
-**Design Assets:**
-- `design-system/` — Colors, fonts, design tokens
-- `data-shapes/` — UI data contracts (the shapes of data components expect)
-- `shell/` — Application shell components
-- `sections/` — All section components, types, sample data, and test specs
+All components are:
+- **Props-based** — Accept data and callbacks via props, never import data directly
+- **Portable** — Work with any React setup
+- **Complete** — Full styling, responsive design, dark mode support
+- **Production-ready** — Not prototypes or mockups
 
-## How to Use This
-
-### Option A: Incremental (Recommended)
-
-Build your app milestone by milestone for better control:
-
-1. Copy the `product-plan/` folder to your codebase
-2. Start with Shell (`instructions/incremental/01-shell.md`) — includes design tokens and application shell
-3. For each section:
-   - Open `prompts/section-prompt.md`
-   - Fill in the section variables at the top (SECTION_NAME, SECTION_ID, NN)
-   - Copy/paste into your coding agent
-   - Answer questions and implement
-4. Review and test after each milestone
-
-### Option B: One-Shot
-
-Build the entire app in one session:
-
-1. Copy the `product-plan/` folder to your codebase
-2. Open `prompts/one-shot-prompt.md`
-3. Add any additional notes to the prompt
-4. Copy/paste the prompt into your coding agent
-5. Answer the agent's clarifying questions
-6. Let the agent plan and implement everything
-
-## Testing
-
-Each section includes a `tests.md` file with UI behavior test specs. For best results:
-
-1. Read `sections/[section-id]/tests.md` before implementing
-2. Write tests for key user flows
-3. Implement the feature to make tests pass
-4. Refactor while keeping tests green
-
-The test specs are **framework-agnostic** — they describe WHAT to test (user-facing behavior), not HOW. Adapt to your testing setup.
-
-## Tips
-
-- **Use the pre-written prompts** — They prompt for important clarifying questions about your tech stack and requirements.
-- **Add your own notes** — Customize prompts with project-specific context when needed.
-- **Build on your designs** — Use completed sections as the starting point for future feature development.
-- **Review thoroughly** — Check plans and implementations carefully to catch details and inconsistencies.
-- **The components are flexible** — They accept data and fire callbacks. How you architect the backend is up to you.
-
----
-
-*Generated by Design OS*
+Wire them up, don't rebuild them.
 ```
 
-## Step 14: Copy Screenshots
+## Step 12: Generate Design System Files
 
-Copy any `.png` files from:
-- `product/shell/` → `product-plan/shell/`
-- `product/sections/[section-id]/` → `product-plan/sections/[section-id]/`
+### tokens.css
 
-## Step 15: Create Zip File
+Create `product-plan/design-system/tokens.css` with CSS custom properties based on the color and typography tokens.
 
-After generating all the export files, create a zip archive of the product-plan folder:
+### tailwind-colors.md
 
-```bash
-# Remove any existing zip file
-rm -f product-plan.zip
+Create `product-plan/design-system/tailwind-colors.md` with guidance on using the color palette with Tailwind CSS v4.
 
-# Create the zip file
-cd . && zip -r product-plan.zip product-plan/
-```
+### fonts.md
 
-This creates `product-plan.zip` in the project root, which will be available for download on the Export page.
+Create `product-plan/design-system/fonts.md` with Google Fonts import instructions.
 
-## Step 16: Confirm Completion
+## Step 13: Generate Data Shapes Overview
+
+Create `product-plan/data-shapes/README.md` and `product-plan/data-shapes/overview.ts` combining all section types.
+
+## Step 14: Confirm Completion
 
 Let the user know:
 
-"I've created the complete export package at `product-plan/` and `product-plan.zip`.
+"I've generated the complete export package for **[Product Name]**:
 
-**What's Included:**
+**Created at `product-plan/`:**
+- `README.md` — Quick start guide
+- `product-overview.md` — Product summary
+- `prompts/` — Ready-to-use prompts for coding agents
+- `instructions/` — Implementation instructions (one-shot + incremental)
+- `design-system/` — Design tokens (CSS, Tailwind config, fonts)
+- `data-shapes/` — UI data contracts
+- `shell/` — Shell components
+- `sections/` — Section components with test specs
 
-**Ready-to-Use Prompts:**
-- `prompts/one-shot-prompt.md` — Prompt for full implementation
-- `prompts/section-prompt.md` — Prompt template for section-by-section
+**To use:**
+1. Copy `product-plan/` into your target codebase
+2. Choose your approach (one-shot or section-by-section)
+3. Paste the prompt into your coding agent (Hermes, Claude Code, Cursor, Codex, etc.)
+4. Answer clarifying questions and let the agent implement
 
-**Instructions:**
-- `product-overview.md` — Product summary (always provide with instructions)
-- `instructions/one-shot-instructions.md` — All milestones combined
-- `instructions/incremental/` — [N] milestone instructions (shell, then sections)
-
-**Design Assets:**
-- `design-system/` — Colors, fonts, tokens
-- `data-shapes/` — UI data contracts and combined type reference
-- `shell/` — Application shell components
-- `sections/` — [N] section component packages with test specs
-
-**Download:**
-
-Restart your dev server and visit the Export page to download `product-plan.zip`.
-
-**How to Use:**
-
-1. Copy `product-plan/` to your implementation codebase
-2. Open `prompts/one-shot-prompt.md` or `prompts/section-prompt.md`
-3. Add any additional notes, then copy/paste into your coding agent
-4. Answer the agent's clarifying questions about your tech stack, auth, etc.
-5. Let the agent implement based on the instructions
-
-The components are props-based and portable — they accept data and callbacks, letting your implementation agent handle routing, data fetching, and state management however fits your stack."
+The components are props-based and production-ready — wire them up, don't rebuild them."
 
 ## Important Notes
 
-- Always transform import paths when copying components
-- Include `product-overview.md` context with every implementation session
-- Use the pre-written prompts — they prompt for important clarifying questions
-- Screenshots provide visual reference for fidelity checking
-- Sample data files are for testing before real APIs are built
-- The export is self-contained — no dependencies on Design OS
-- Components are portable — they work with any React setup
+- The export focuses on UI designs, product requirements, and user flows
+- Backend architecture, data modeling, and business logic decisions are left to the implementation agent
+- The prompts guide the agent to ask clarifying questions about tech stack before building
+- Test specs are framework-agnostic — adapt to your testing setup
+- Components are portable — work with any React + Tailwind setup

@@ -1,3 +1,10 @@
+---
+name: design-os-design-screen
+description: "Design OS Phase 2: Create screen design React components for a section. Props-based, portable, production-ready components with full styling."
+version: 1.0.0
+parent: design-os
+---
+
 # Design Screen
 
 You are helping the user create a screen design for a section of their product. The screen design will be a props-based React component that can be exported and integrated into any React codebase.
@@ -6,9 +13,9 @@ You are helping the user create a screen design for a section of their product. 
 
 First, identify the target section and verify that `spec.md`, `data.json`, and `types.ts` all exist.
 
-Read `/product/product-roadmap.md` to get the list of available sections.
+Read `product/product-roadmap.md` to get the list of available sections.
 
-If there's only one section, auto-select it. If there are multiple sections, use the AskUserQuestion tool to ask which section the user wants to create a screen design for.
+If there's only one section, auto-select it. If there are multiple sections, use the `clarify` tool to ask which section the user wants to create a screen design for.
 
 Then verify all required files exist:
 
@@ -18,11 +25,11 @@ Then verify all required files exist:
 
 If spec.md doesn't exist:
 
-"I don't see a specification for **[Section Title]** yet. Please run `/shape-section` first to define the section's requirements."
+"I don't see a specification for **[Section Title]** yet. Please load `/skill design-os-shape-section` first to define the section's requirements."
 
 If data.json or types.ts don't exist:
 
-"I don't see sample data for **[Section Title]** yet. Please run `/sample-data` first to create sample data and types for the screen designs."
+"I don't see sample data for **[Section Title]** yet. Please load `/skill design-os-sample-data` first to create sample data and types for the screen designs."
 
 Stop here if any file is missing.
 
@@ -31,27 +38,27 @@ Stop here if any file is missing.
 Check for optional enhancements:
 
 **Design Tokens:**
-- Check if `/product/design-system/colors.json` exists
-- Check if `/product/design-system/typography.json` exists
+- Check if `product/design-system/colors.json` exists
+- Check if `product/design-system/typography.json` exists
 
 If design tokens exist, read them and use them for styling. If they don't exist, show a warning:
 
-"Note: Design tokens haven't been defined yet. I'll use default styling, but for consistent branding, consider running `/design-tokens` first."
+"Note: Design tokens haven't been defined yet. I'll use default styling, but for consistent branding, consider loading `/skill design-os-design-tokens` first."
 
 **Shell:**
 - Check if `src/shell/components/AppShell.tsx` exists
 
 If shell exists, the screen design will render inside the shell in Design OS. If not, show a warning:
 
-"Note: An application shell hasn't been designed yet. The screen design will render standalone. Consider running `/design-shell` first to see section screen designs in the full app context."
+"Note: An application shell hasn't been designed yet. The screen design will render standalone. Consider loading `/skill design-os-design-shell` first to see section screen designs in the full app context."
 
 ## Step 3: Analyze Requirements
 
 Read and analyze all three files:
 
-1. **spec.md** - Understand the user flows and UI requirements
-2. **data.json** - Understand the data structure and sample content
-3. **types.ts** - Understand the TypeScript interfaces and available callbacks
+1. **spec.md** — Understand the user flows and UI requirements
+2. **data.json** — Understand the data structure and sample content
+3. **types.ts** — Understand the TypeScript interfaces and available callbacks
 
 Identify what views are needed based on the spec. Common patterns:
 
@@ -61,12 +68,12 @@ Identify what views are needed based on the spec. Common patterns:
 
 ## Step 4: Clarify the Screen Design Scope
 
-If the spec implies multiple views, use the AskUserQuestion tool to confirm which view to build first:
+If the spec implies multiple views, use the `clarify` tool to confirm which view to build first:
 
 "The specification suggests a few different views for **[Section Title]**:
 
-1. **[View 1]** - [Brief description]
-2. **[View 2]** - [Brief description]
+1. **[View 1]** — [Brief description]
+2. **[View 2]** — [Brief description]
 
 Which view should I create first?"
 
@@ -74,9 +81,9 @@ If there's only one obvious view, proceed directly.
 
 ## Step 5: Invoke the Frontend Design Skill
 
-Before creating the screen design, read the `frontend-design` skill to ensure high-quality design output.
+Before creating the screen design, load the `design-os-frontend-design` skill to ensure high-quality design output.
 
-Read the file at `.claude/skills/frontend-design/SKILL.md` and follow its guidance for creating distinctive, production-grade interfaces.
+Load `/skill design-os-frontend-design` and follow its guidance for creating distinctive, production-grade interfaces.
 
 ## Step 6: Create the Props-Based Component
 
@@ -133,13 +140,13 @@ export function InvoiceList({
 
 ### Applying Design Tokens
 
-**If `/product/design-system/colors.json` exists:**
+**If `product/design-system/colors.json` exists:**
 - Use the primary color for buttons, links, and key accents
 - Use the secondary color for tags, highlights, secondary elements
 - Use the neutral color for backgrounds, text, and borders
 - Example: If primary is `lime`, use `lime-500`, `lime-600`, etc. for primary actions
 
-**If `/product/design-system/typography.json` exists:**
+**If `product/design-system/typography.json` exists:**
 - Note the font choices for reference in comments
 - The fonts will be applied at the app level, but use appropriate font weights
 
@@ -156,9 +163,9 @@ export function InvoiceList({
 
 ### What NOT to Include
 
-- No `import data from` statements - data comes via props
+- No `import data from` statements — data comes via props
 - No features not specified in the spec
-- No routing logic - callbacks handle navigation intent
+- No routing logic — callbacks handle navigation intent
 - No navigation elements (shell handles navigation)
 
 ## Step 7: Create Sub-Components (If Needed)
@@ -249,7 +256,7 @@ The preview wrapper:
 - Imports sample data from data.json
 - Passes data to the component via props
 - Provides console.log handlers for callbacks (for testing interactions)
-- Is NOT exported to the user's codebase - it's only for Design OS
+- Is NOT exported to the user's codebase — it's only for Design OS
 - **Will render inside the shell** if one has been designed
 
 ## Step 9: Create Component Index
@@ -288,18 +295,18 @@ Let the user know:
 
 **Next steps:**
 
-- Run `/screenshot-design` to capture a screenshot of this screen design for documentation
-- If the spec calls for additional views, run `/design-screen` again to create them
-- When all sections are complete, run `/export-product` to generate the complete export package"
+- Load `/skill design-os-screenshot-design` to capture a screenshot of this screen design for documentation
+- If the spec calls for additional views, load `/skill design-os-design-screen` again to create them
+- When all sections are complete, load `/skill design-os-export-product` to generate the complete export package"
 
 If the spec indicates additional views are needed:
 
-"The specification also calls for [other view(s)]. Run `/design-screen` again to create those, then `/screenshot-design` to capture each one."
+"The specification also calls for [other view(s)]. Load `/skill design-os-design-screen` again to create those, then `/skill design-os-screenshot-design` to capture each one."
 
 ## Important Notes
 
-- ALWAYS read the `frontend-design` skill before creating screen designs
-- Components MUST be props-based - never import data.json in exportable components
+- ALWAYS load the `design-os-frontend-design` skill before creating screen designs
+- Components MUST be props-based — never import data.json in exportable components
 - The preview wrapper is the ONLY file that imports data.json
 - Use TypeScript interfaces from types.ts for all props
 - Callbacks should be optional (use `?`) and called with optional chaining (`?.`)

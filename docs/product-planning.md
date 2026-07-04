@@ -25,8 +25,8 @@ Share any notes, ideas, or rough thoughts you have about what you're building. T
 - `product/data-shape/data-shape.md` — Core entities and relationships
 
 **To update individually later:**
-- `/product-roadmap` — Add, remove, or reorder sections
-- `/data-shape` — Add, remove, or update entities and relationships
+- `/skill design-os-product-roadmap` — Add, remove, or reorder sections
+- `/skill design-os-data-shape` — Add, remove, or update entities and relationships
 
 ## 2. Design Tokens
 

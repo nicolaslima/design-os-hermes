@@ -31,7 +31,7 @@ Once it has enough information, the AI writes the spec and generates sample data
 - `product/sections/[section-id]/data.json` — Sample data with `_meta` descriptions
 - `product/sections/[section-id]/types.ts` — TypeScript interfaces
 
-**To update sample data later:** Run `/sample-data` to modify the data structure or sample records.
+**To update sample data later:** Run `/skill design-os-sample-data` to modify the data structure or sample records.
 
 ## 2. Design the Screen
 
@@ -75,7 +75,7 @@ All screen designs include:
 
 ### Multiple Views
 
-If the spec implies multiple views (list view, detail view, form, etc.), you'll be asked which to build first. Run `/design-screen` again for additional views.
+If the spec implies multiple views (list view, detail view, form, etc.), you'll be asked which to build first. Run `/skill design-os-design-screen` again for additional views.
 
 **Creates:**
 - `src/sections/[section-id]/components/[ViewName].tsx` — Main component

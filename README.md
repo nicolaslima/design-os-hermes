@@ -1,8 +1,10 @@
 <img width="1280" height="640" alt="Design OS" src="https://github.com/user-attachments/assets/a9c04258-7b9a-45b6-8475-3431cdf5dbe9" />
 
-## The missing design process between your idea and your codebase.
+## The missing design process between your idea and your codebase — now for Hermes Agent.
 
 [Design OS](https://buildermethods.com/design-os) is a product planning and design tool that helps you define your product vision, sketch out your data shape, design your UI, and export production-ready components for implementation. Rather than jumping straight into code, you work through a guided process that captures what you're building and why—then hands off everything your coding agent needs to build it right.
+
+This is a **Hermes Agent adaptation** of the original Design OS by Brian Casel. It preserves the same process, file formats, and design principles while replacing Claude Code slash commands with Hermes skills.
 
 ## The Problem
 
@@ -23,31 +25,109 @@ Each step is a conversation. The AI asks questions, you provide direction, and t
 
 ---
 
+## Getting Started with Hermes Agent
+
+### Prerequisites
+
+- **[Hermes Agent](https://hermes-agent.nousresearch.com)** installed (`curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash`)
+- **Node.js** (v18 or higher)
+- **npm** (comes with Node.js)
+
+### Clone and Setup
+
+```bash
+git clone https://github.com/buildermethods/design-os.git my-project-design
+cd my-project-design
+git remote remove origin
+npm install
+```
+
+### Start the Dev Server
+
+```bash
+npm run dev
+```
+
+Open http://localhost:5173 in your browser.
+
+### Start Designing with Hermes
+
+In your Hermes session, load the umbrella skill:
+
+```
+/skill design-os
+```
+
+Follow the guided flow. Each step is a conversation — the AI asks questions, you provide direction, and together you shape your product.
+
+### Quick Reference — Skills
+
+| Step | Skill | Purpose |
+|------|-------|---------|
+| 1 | `/skill design-os-product-vision` | Define product overview, roadmap sections, and data shape |
+| 2 | `/skill design-os-design-tokens` | Choose colors and typography |
+| 3 | `/skill design-os-design-shell` | Design navigation and layout |
+| 4 | `/skill design-os-shape-section` | Define a section's scope, requirements, sample data + types |
+| 5 | `/skill design-os-design-screen` | Create screen design components |
+| 6 | `/skill design-os-screenshot-design` | Capture screenshots |
+| 7 | `/skill design-os-export-product` | Generate the complete handoff package |
+
+**Auxiliary:**
+| Skill | Purpose |
+|-------|---------|
+| `/skill design-os-product-roadmap` | Update product sections (after initial creation) |
+| `/skill design-os-data-shape` | Update data entities (after initial creation) |
+| `/skill design-os-sample-data` | Update sample data and types (after initial creation) |
+
+---
+
 ## Documentation & Installation
 
-Docs, installation, usage, & best practices 👉 [It's all here](https://buildermethods.com/design-os)
+Full docs, installation, usage, & best practices in the [`docs/`](docs/) directory:
+- [Getting Started](docs/getting-started.md)
+- [Usage](docs/usage.md)
+- [Product Planning](docs/product-planning.md)
+- [Designing Sections](docs/design-section.md)
+- [Export](docs/export.md)
+- [Codebase Implementation](docs/codebase-implementation.md)
+- [Requirements](docs/requirements.md)
 
 ---
 
-## Support, Training & Community
+## Compatibility
 
-For official support, training, and community as you use Design OS—for yourself or with your team, consider joining _Builder Methods Pro_. You'll get access to Brian Casel (the creator) for questions, a community of builders using Design OS, plus all Builder Methods workshops and training on AI-first development.
+- **Works with Hermes Agent** (this adaptation) or any AI coding agent for implementation: Claude Code, Cursor, Copilot, Codex, or anything that can implement from a handoff
+- Your frontend needs **React** and **Tailwind CSS v4**
+- Your backend can be anything — Rails, Laravel, Next.js, Python, Go, whatever
 
-👉 [Join Builder Methods Pro](https://buildermethods.com/pro)
+## Open Source
 
----
-
-## Follow updates & releases
-
-Read the [changelog](CHANGELOG.md)
-
-[Subscribe to be notified of major new releases of Design OS](https://buildermethods.com/design-os)
+Design OS is free, open source, and runs locally.
 
 ---
 
-## Created by Brian Casel @ Builder Methods
+## Differences from the Original
 
-Created by Brian Casel, the creator of [Builder Methods](https://buildermethods.com), where Brian helps professional software developers and teams build with AI.
+This Hermes adaptation makes the following changes:
+
+| Aspect | Original (Claude Code) | Hermes Edition |
+|--------|------------------------|----------------|
+| Slash commands | `.claude/commands/design-os/*.md` | `.hermes/skills/design-os-*/SKILL.md` |
+| Agent instructions | `agents.md` / `claude.md` | `AGENTS.md` (Hermes convention) |
+| Interactive questions | `AskUserQuestion` tool | `clarify` tool |
+| Screenshot capture | Playwright MCP server | Hermes native browser tools |
+| Frontend design skill | `.claude/skills/frontend-design/` | `.hermes/skills/design-os-frontend-design/` |
+| Invocation | `/product-vision` | `/skill design-os-product-vision` |
+
+All file formats, design principles, and the overall process remain **identical** — the Design OS React app works unchanged because it parses the same `product/` directory structure.
+
+---
+
+## Created by
+
+Originally created by [Brian Casel](https://buildermethods.com) at [Builder Methods](https://buildermethods.com).
+
+Hermes Agent adaptation by Nicolas Lima.
 
 Get Brian's free resources on building with AI:
 - [Builder Briefing newsletter](https://buildermethods.com)
